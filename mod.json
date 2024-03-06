@@ -9,5 +9,10 @@
 	"issues": {
 		"info": "You can open an issue on GitHub or DM me on Discord: \"the.real.zer0\"",
 		"url": "https://github.com/StatusZer0/Basic-Hack"
+	},
+	"resources": {
+		"files": [
+			"resources/hacks.json"
+		]
 	}
 }

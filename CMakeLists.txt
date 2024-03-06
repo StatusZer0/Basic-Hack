@@ -8,13 +8,15 @@ project(BasicHack VERSION 1.0.0)
 
 file(GLOB SOURCES
     src/*.cpp
+    src/*.hpp
     src/hacks/*.cpp
+    src/hacks/*.hpp
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 if (NOT DEFINED ENV{GEODE_SDK})
-    message(FATAL_ERROR "Unable to find Geode SDK! Please define GEODE_SDK environment variable to point to Geode")
+    message(FATAL_ERROR "where tf is the geode sdk? you gotta show me where it is dingus")
 else()
     message(STATUS "Found Geode: $ENV{GEODE_SDK}")
 endif()
