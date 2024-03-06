@@ -4,7 +4,7 @@
 using namespace geode::prelude;
 
 $on_mod(Loaded) {
-    ImGuiCocos::get().setup([] {
+    ImGuiCocos::get().setup([] {}).draw([] {
         ImGui::Begin("Basic Hack");
 
 		if (ImGui::Button("Test Alert"))
@@ -15,5 +15,7 @@ $on_mod(Loaded) {
 				"It worked" // button
 			)->show();
 		}
+
+		ImGui::End();
     });
 }
