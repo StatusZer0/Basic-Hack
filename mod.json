@@ -5,5 +5,9 @@
 	"id": "statuszer0.basic_hack",
 	"name": "Basic Hack",
 	"developer": "StatusZer0",
-	"description": "Basic hacks and tools for Geode"
+	"description": "Basic hacks and tools for Geode",
+	"issues": {
+		"info": "You can open an issue on GitHub or DM me on Discord: \"the.real.zer0\"",
+		"url": "https://github.com/StatusZer0/Basic-Hack"
+	}
 }
