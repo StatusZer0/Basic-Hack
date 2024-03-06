@@ -1,0 +1,9 @@
+{
+	"geode": "2.0.0-beta.19",
+	"gd": "2.204",
+	"version": "v1.0.0",
+	"id": "statuszer0.basic_hack",
+	"name": "Basic Hack",
+	"developer": "StatusZer0",
+	"description": "Basic hacks and tools for Geode"
+}
