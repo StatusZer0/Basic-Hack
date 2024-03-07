@@ -51,7 +51,7 @@ struct HackItem
 
 extern std::vector<HackItem> allHacks; // this fixes everything.     - FireMario211
 
-class Hacks
+class HacksMain
 {
     public:
 
@@ -108,7 +108,7 @@ class Hacks
     {
         allHacks = {};
 
-        std::vector<matjson::Value> jsonArray;
+        extern std::vector<matjson::Value> jsonArray;
         jsonArray = matjson::parse(readFile(category + ".json")).as_array();
 
         for (size_t i = 0; i < jsonArray.size(); ++i)
@@ -123,6 +123,14 @@ class Hacks
 
             allHacks.push_back(item);
         }
+    }
+
+    static std::vector<matjson::Value> getHackArray(std::string category)
+    {
+        std::vector<matjson::Value> jsonArray;
+        jsonArray = matjson::parse(readFile(category + ".json")).as_array();
+
+        return jsonArray;
     }
 };
 

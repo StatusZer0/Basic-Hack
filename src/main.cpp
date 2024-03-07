@@ -20,7 +20,7 @@ class $modify (CCKeyboardDispatcher)
 	}
 };
 
-std::string category;
+std::string category = "Bypass";
 
 $on_mod(Loaded) {
     ImGuiCocos::get().setup([] {}).draw([] {
@@ -41,32 +41,32 @@ $on_mod(Loaded) {
 				ImGui::EndMenuBar();
 			}
 
-			ImGui::Text("Basic Hack by StatusZer0" + Mod::get()->getVersion().toString());
+			ImGui::Text("Basic Hack by StatusZer0 - " + Mod::get()->getVersion().toString());
 			ImGui::Separator();
 
-			Hacks::getHackList(category);
+			HacksMain::getHackList(category);
 
 			ImGui::Text(category);
 			ImGui::BeginChild("Scrolling");
-				for (size_t i = 0; i < allHacks.size; i++)
+				for (size_t i = 0; i < jsonArray.size; i++)
 				{
-   					const auto& obj = allHacks[i];
-					ImGui::Text(obj.name);
-					ImGui::Text(obj.desc);
-					switch (obj.type)
+   					const auto& obj = jsonArray[i];
+					std::string name = 
+					//ImGui::Text(obj.name);
+					if (obj.type == "bool")
 					{
-						case "bool":
-							ImGui::Checkbox(obj.name);
-							break;
+						ImGui::Checkbox(obj.name.c_str());
 
-						case "float":
-							ImGui::SliderFloat(obj.name, %f, 0.1f, 2f);
-							break;
+					} else if (obj.type == "float")
+					{
+						ImGui::SliderFloat(obj.name.c_str(), &f, 0.1f, 2.0f);
 
-						case "button":
-							ImGui::Button(obj.name);
-							break;
+					} else if (obj.type == "button")
+					{
+						ImGui::Button(obj.name.c_str());
 					}
+
+					ImGui::Text(obj.desc.c_str());
 					
 					ImGui::Spacing();
 				}
@@ -84,4 +84,4 @@ $on_mod(Loaded) {
 			ImGui::End();
 		}
     });
-}
+};

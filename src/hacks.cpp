@@ -2,12 +2,12 @@
 
 std::vector<HackItem> allHacks;
 
-bool Hacks::isCheating() {
-    auto cheats = Hacks::getCheats();
+bool HacksMain::isCheating() {
+    auto cheats = HacksMain::getCheats();
 
     bool cheating = false;
     for (const auto& cheat : cheats) {
-        if (Hacks::hackEnabled(cheat)) {
+        if (HacksMain::hackEnabled(cheat)) {
             cheating = true;
             break;
         }
