@@ -4,10 +4,10 @@ std::vector<HackItem> allHacks;
 
 bool Hacks::isCheating() {
     auto cheats = Hacks::getCheats();
-    
+
     bool cheating = false;
     for (const auto& cheat : cheats) {
-        if (Hacks::isHackEnabled(cheat)) {
+        if (Hacks::hackEnabled(cheat)) {
             cheating = true;
             break;
         }

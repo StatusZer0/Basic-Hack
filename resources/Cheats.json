@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Noclip",
+        "desc": "Makes the player immortal.",
+        "type": "bool"
+    },
+    {
+        "name": "Instant Complete",
+        "desc": "Sends the player to the end of the level.",
+        "type": "bool"
+    },
+    {
+        "name": "Kill Player",
+        "desc": "Oof",
+        "type": "button"
+    }
+]

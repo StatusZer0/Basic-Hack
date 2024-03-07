@@ -20,6 +20,8 @@ class $modify (CCKeyboardDispatcher)
 	}
 };
 
+std::string category;
+
 $on_mod(Loaded) {
     ImGuiCocos::get().setup([] {}).draw([] {
 
@@ -27,10 +29,46 @@ $on_mod(Loaded) {
 
         	ImGui::Begin("Basic Hack");
 
-			ImGui::BeginChild("Scrolling");
-				for (int n = 0; n < 50; n++)
+			if (ImGui::BeginMenuBar())
+			{
+				if (ImGui::BeginMenu("Menu"))
 				{
-   					ImGui::Button("%04d: Some text", n);
+					if (ImGui::MenuItem("Bypass")) { category = "Bypass"; }
+					if (ImGui::MenuItem("Cheats")) { category = "Cheats"; }
+					if (ImGui::MenuItem("Close", "F6")) { showMenu = false; }
+					ImGui::EndMenu();
+				}
+				ImGui::EndMenuBar();
+			}
+
+			ImGui::Text("Basic Hack by StatusZer0" + Mod::get()->getVersion().toString());
+			ImGui::Separator();
+
+			Hacks::getHackList(category);
+
+			ImGui::Text(category);
+			ImGui::BeginChild("Scrolling");
+				for (size_t i = 0; i < allHacks.size; i++)
+				{
+   					const auto& obj = allHacks[i];
+					ImGui::Text(obj.name);
+					ImGui::Text(obj.desc);
+					switch (obj.type)
+					{
+						case "bool":
+							ImGui::Checkbox(obj.name);
+							break;
+
+						case "float":
+							ImGui::SliderFloat(obj.name, %f, 0.1f, 2f);
+							break;
+
+						case "button":
+							ImGui::Button(obj.name);
+							break;
+					}
+					
+					ImGui::Spacing();
 				}
 				ImGui::EndChild();
 
@@ -38,8 +76,8 @@ $on_mod(Loaded) {
 			{
 				FLAlertLayer::create(
 					"Basic Hack", //title
-					"Let's hope this works.", //content
-					"It worked" // button
+					"Using any hacks from the <cb>Cheats</c> category on rated levels may get you <cr>banned from the leaderboards!</c> Please use <cy>Safe Mode</c> when using these!", //content
+					"OK" // button
 				)->show();
 			}
 

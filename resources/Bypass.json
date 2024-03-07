@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Text Limit",
+        "desc": "Removes the character limit for text.",
+        "type": "bool"
+    },
+    {
+        "name": "Locked Demons",
+        "desc": "Unlocks the locked official demons, regardless of coin amount.",
+        "type": "bool"
+    }
+]

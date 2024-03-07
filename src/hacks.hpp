@@ -67,7 +67,7 @@ class Hacks
         return false;
     }
 
-    static void readFile(const std::string& fileName)
+    static std::string readFile(const std::string& fileName)
     {
         std::string filePath = Mod::get()->getResourcesDir().string() + "/" + fileName;
         std::ifstream file(filePath);
@@ -84,13 +84,14 @@ class Hacks
     // returns all hacks that count as cheating
     static std::vector<std::string> getCheats() {
         return {
-            "Noclip"
-        }
+            "Noclip",
+            "Instant Complete"
+        };
     };
 
     static bool isCheating();
 
-    // gets a checkbox via name
+    // gets a hack object via name
     static HackItem* getHack(const std::string& name)
     {
         for (auto& hack : allHacks)
@@ -100,17 +101,17 @@ class Hacks
                 return &hack;
             }
         }
-        return nullptr; //return nullptr if no checkbox was found
+        return nullptr; //return nullptr if no hack was found
     }
 
-    static void getAllHacks()
+    static void getHackList(std::string category)
     {
         allHacks = {};
 
         std::vector<matjson::Value> jsonArray;
-        jsonArray = matjson::parse(readFile("hacks.json")).as_array();
+        jsonArray = matjson::parse(readFile(category + ".json")).as_array();
 
-        for (size_t i = 0; i < jsonArray.size; ++i)
+        for (size_t i = 0; i < jsonArray.size(); ++i)
         {
             const auto& object = jsonArray[i];
             HackItem item = {
