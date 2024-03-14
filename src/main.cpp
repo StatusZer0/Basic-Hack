@@ -26,12 +26,12 @@ $on_mod(Loaded) {
     ImGuiCocos::get().setup([] {}).draw([] {
 
 		if (showMenu) {
-
-        	ImGui::Begin("Basic Hack");
+			
+			ImGui::Begin("Basic Hack", nullptr, ImGuiWindowFlags_MenuBar);
 
 			if (ImGui::BeginMenuBar())
 			{
-				if (ImGui::BeginMenu("Menu"))
+				if (ImGui::BeginMenu("Category"))
 				{
 					if (ImGui::MenuItem("Bypass")) { category = "Bypass"; }
 					if (ImGui::MenuItem("Cheats")) { category = "Cheats"; }
@@ -41,27 +41,30 @@ $on_mod(Loaded) {
 				ImGui::EndMenuBar();
 			}
 
-			ImGui::Text("Basic Hack by StatusZer0 - " + Mod::get()->getVersion().toString());
+			ImGui::Text("Basic Hack by StatusZer0 - v1.0.0");
 			ImGui::Separator();
-
+			
 			HacksMain::getHackList(category);
 
-			ImGui::Text(category);
+			bool value;
+
+			ImGui::Text(category.c_str());
+			ImGui::Separator();
+
 			ImGui::BeginChild("Scrolling");
-				for (size_t i = 0; i < jsonArray.size; i++)
+				for (size_t i = 0; i < allHacks.size(); i++)
 				{
-   					const auto& obj = jsonArray[i];
-					std::string name = 
-					//ImGui::Text(obj.name);
+   					const auto& obj = allHacks[i];
+					ImGui::Text(obj.name.c_str());
 					if (obj.type == "bool")
 					{
-						ImGui::Checkbox(obj.name.c_str());
+						ImGui::Checkbox(obj.name.c_str(), &value);
 
-					} else if (obj.type == "float")
+					}/* else if (obj.type == "float")
 					{
 						ImGui::SliderFloat(obj.name.c_str(), &f, 0.1f, 2.0f);
 
-					} else if (obj.type == "button")
+					}*/ else if (obj.type == "button")
 					{
 						ImGui::Button(obj.name.c_str());
 					}
@@ -69,9 +72,10 @@ $on_mod(Loaded) {
 					ImGui::Text(obj.desc.c_str());
 					
 					ImGui::Spacing();
+					ImGui::Spacing();
 				}
-				ImGui::EndChild();
-
+			ImGui::EndChild();
+			
 			if (ImGui::Button("Test Alert"))
 			{
 				FLAlertLayer::create(
@@ -82,6 +86,6 @@ $on_mod(Loaded) {
 			}
 
 			ImGui::End();
-		}
+		};
     });
-};
+}

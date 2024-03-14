@@ -108,7 +108,7 @@ class HacksMain
     {
         allHacks = {};
 
-        extern std::vector<matjson::Value> jsonArray;
+        std::vector<matjson::Value> jsonArray;
         jsonArray = matjson::parse(readFile(category + ".json")).as_array();
 
         for (size_t i = 0; i < jsonArray.size(); ++i)

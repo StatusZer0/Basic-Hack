@@ -12,7 +12,7 @@
 	},
 	"resources": {
 		"files": [
-			"resources/hacks.json"
+			"resources/*.json"
 		]
 	}
 }
