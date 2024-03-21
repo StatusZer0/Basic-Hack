@@ -24,8 +24,8 @@ struct matjson::Serialize<HackSave> {
 
     static matjson::Value to_json(HackSave const& value) {
         auto obj = matjson::Object();
-        obj["x"] = value.x;
-        obj["y"] = value.y;
+        obj["name"] = value.name;
+        obj["value"] = value.value;
         return obj;
     }
 };
@@ -34,9 +34,9 @@ class SaveMain
 {
     public: 
 
-    static void SetupHackValues()
+    static void SetupHackValues(std::string category)
     {
-        HacksMain::getHackList();
+        HacksMain::getHackList(category);
 
         auto hacks = allHacks;
 
