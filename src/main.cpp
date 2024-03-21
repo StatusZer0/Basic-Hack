@@ -2,6 +2,7 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/CCKeyboardDispatcher.hpp>
 #include "hacks.hpp"
+#include "save.hpp"
 
 using namespace geode::prelude;
 
@@ -14,6 +15,11 @@ class $modify (CCKeyboardDispatcher)
 		if (key == enumKeyCodes::KEY_F6 && down)
 		{
 			showMenu = !showMenu;
+		}
+
+		if (key == enumKeyCodes::KEY_F5 && down)
+		{
+			SaveMain::SetupHackValues();
 		}
 
 		return CCKeyboardDispatcher::dispatchKeyboardMSG(key, down, repeat);
@@ -89,3 +95,4 @@ $on_mod(Loaded) {
 		};
     });
 }
+
